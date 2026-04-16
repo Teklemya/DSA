@@ -9,7 +9,7 @@ class Solution:
             # move right until the group ends
             while right < len(chars) and chars[right] == chars[left]:
                 right += 1
-
+            #once that breaks wether its be becuase right is out of bound or we have found a diff group
             count = right - left
 
             # always write the character once
@@ -24,7 +24,7 @@ class Solution:
 
             # move to the next group
             left = right
-
+        #the length of the compressed result.
         return write
 
         '''
