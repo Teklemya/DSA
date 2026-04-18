@@ -9,11 +9,11 @@ class Solution:
         p1 = headA
         p2 = headB
 
-        seen = {}
+        seen = set()
 
         while p1:
-            #add the node to seen and associate with the value
-            seen[p1] = p1.val
+            #add the node to seen 
+            seen.add(p1) 
             #once added move it
             p1 = p1.next
         
@@ -31,7 +31,7 @@ class Solution:
 I am given two linkedList with an intersection spot and i am supposed to find that and return the value of that node
 however if this two do not meet i will have to return a null
 
-M - I will use a hashmap and maybe start with p1 and p2 at headA and headB
-P - Once i have my pointer i will move pointer one to the end to keeo track of the node and the val as a key value pair in the dict
-    then i will move p2 and check if Node exisits in seen.keys(): if so return the node.val if not return None
+M - I will use a set and maybe start with p1 and p2 at headA and headB
+P - Once i have my pointer i will move pointer one to the end to keep track of the node and add it to the set
+    then i will move p2 and check if Node exisits in seen: if so return the node if not return None
 '''
