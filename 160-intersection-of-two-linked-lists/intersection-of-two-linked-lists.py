@@ -1,0 +1,37 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        p1 = headA
+        p2 = headB
+
+        seen = {}
+
+        while p1:
+            #add the node to seen and associate with the value
+            seen[p1] = p1.val
+            #once added move it
+            p1 = p1.next
+        
+        while p2:
+            #if this node is in seen then i have reached the intersection point
+            if p2 in seen:
+                return p2
+            else:
+                #move the pointer 2
+                p2 = p2.next
+        return None
+
+
+'''
+I am given two linkedList with an intersection spot and i am supposed to find that and return the value of that node
+however if this two do not meet i will have to return a null
+
+M - I will use a hashmap and maybe start with p1 and p2 at headA and headB
+P - Once i have my pointer i will move pointer one to the end to keeo track of the node and the val as a key value pair in the dict
+    then i will move p2 and check if Node exisits in seen.keys(): if so return the node.val if not return None
+'''
