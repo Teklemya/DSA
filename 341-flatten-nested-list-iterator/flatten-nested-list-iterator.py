@@ -54,17 +54,11 @@ class NestedIterator:
 
     def __init__(self, nestedList: [NestedInteger]):
         #iniatlize the stack
-        self.stack = []
-        #populate the stack with the given nestedList
-        for i in range(len(nestedList) -1, -1, -1):
-            self.stack.append(nestedList[i])
+        self.stack = nestedList[::-1]
+
     
     def next(self) -> int:
-        # #now when we call next assuming hasnext will return true then we can just pop the top of the stack since it is an int
-        # if self.hasNext():
-        #     #then now that i will be able to get the nestedInterger object by poping i can pop and call getInteger on that object
-        #     nestedInt = self.stack.pop()
-            return self.stack.pop().getInteger()
+        return self.stack.pop().getInteger()
         
     
     def hasNext(self) -> bool:
