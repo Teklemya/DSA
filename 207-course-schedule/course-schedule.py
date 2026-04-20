@@ -2,36 +2,100 @@ from collections import defaultdict
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         preMap = defaultdict(list)
-        #build the preMap to map each course to its prereq
         for crs, pre in prerequisites:
             preMap[crs].append(pre)
-
+        print(preMap)
         visiting = set()
-        #initalize dfs on that course
+        #once i built my adjacny list / map
         def dfs(crs):
-            #if this crs is in visiting w
-            if crs in visiting:
-                return False
-            #check if the value of this course is empty / no other pre-req
+            #if the preMap value of that course is [] then we can complete it
             if preMap[crs] == []:
                 return True
-            #else add into the visiting set
+            
+            #if the crs is in visited then return False
+            if crs in visiting:
+                return False
+            #if not all to the set and call dfs on the nebighor or prereq
             visiting.add(crs)
-            #if crs has pre-reqs then call dfs on that crs pre-req 
             for preq in preMap[crs]:
-                #when i run dfs if i get False at any of the preqs
                 if not dfs(preq):
                     return False
-            #if all prereqs can be done it is no longer in the dfs path so i can remove it from the visiting set
+            
+            #i can now remove the course becuase i am able to finish all the prereq
             visiting.remove(crs)
-            #if all are true that means i can compelete this course -> update value to []
+            #i can now set the value to [ ] becuase i know i can comeplete everything no need to re run
             preMap[crs] = []
             return True
-        #now incase we have sth like [0,1] [2,3] a graph that is not connected i need to run dfs on all course in numCourses
+
+        #now i case the courses are not connected like 0 -> 1 and 2-> 3
+
         for crs in range(numCourses):
+            #check if dfs passes
             if not dfs(crs):
                 return False
         return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # preMap = defaultdict(list)
+        # for crs, pre in prerequisites:
+        #     preMap[crs].append(pre)
+        # print(preMap)
+ 
+        # preMap = defaultdict(list)
+        # #build the preMap to map each course to its prereq
+        # for crs, pre in prerequisites:
+        #     preMap[crs].append(pre)
+
+        # visiting = set()
+        # #initalize dfs on that course
+        # def dfs(crs):
+        #     #if this crs is in visiting w
+        #     if crs in visiting:
+        #         return False
+        #     #check if the value of this course is empty / no other pre-req
+        #     if preMap[crs] == []:
+        #         return True
+        #     #else add into the visiting set
+        #     visiting.add(crs)
+        #     #if crs has pre-reqs then call dfs on that crs pre-req 
+        #     for preq in preMap[crs]:
+        #         #when i run dfs if i get False at any of the preqs
+        #         if not dfs(preq):
+        #             return False
+        #     #if all prereqs can be done it is no longer in the dfs path so i can remove it from the visiting set
+        #     visiting.remove(crs)
+        #     #if all are true that means i can compelete this course -> update value to []
+        #     preMap[crs] = []
+        #     return True
+        # #now incase we have sth like [0,1] [2,3] a graph that is not connected i need to run dfs on all course in numCourses
+        # for crs in range(numCourses):
+        #     if not dfs(crs):
+        #         return False
+        # return True
 
 
 
