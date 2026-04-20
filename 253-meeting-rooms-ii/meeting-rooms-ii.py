@@ -11,22 +11,19 @@ class Solution:
         endTime = sorted(interval[1] for interval in intervals)
         print(endTime)
 
-        room = 0
-        minRoom = 0
-
+        minRoom, room = 0, 0
         s, e = 0, 0
-        #while s pointer is not out of bound
-        while s < len(startTime):
-            if startTime[s] < endTime[e]:
-                s += 1
-                room += 1
-            else:
-                e += 1
-                room -= 1
 
+        while s < len(startTime):
+            #now take the min between start time and end time at that point
+            if startTime[s] < endTime[e]:
+                room += 1
+                s += 1
+            else:
+                room -= 1
+                e += 1
             minRoom = max(minRoom, room)
         return minRoom
-
 
         #now do a two pointer apporach 
         #where we take the min between start and end and move that pointer
