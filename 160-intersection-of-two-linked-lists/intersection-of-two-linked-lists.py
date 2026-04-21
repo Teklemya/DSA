@@ -9,11 +9,25 @@ class Solution:
         p1 = headA
         p2 = headB
 
-        while p1 != p2:
-            p1 = p1.next if p1 else headB
-            p2 = p2.next if p2 else headA
-        return p1
+        # while p1 != p2:
+        #     #p1 switches tracks and continues on the other list
+        #     p1 = p1.next if p1 else headB
+        #     p2 = p2.next if p2 else headA
+        # return p1
+        '''
 
+        Step	p1	    p2
+        1	    A1	    B1
+        2	    A2	    B2
+        3	    C1	    B3
+        4	    C2	    C1
+        5	    None	C2
+        6	    B1  	None
+        7	    B2	    A1 
+        8	    B3	    A2
+        9	    C1      C1 
+
+        '''
 
 
 
@@ -26,22 +40,22 @@ class Solution:
 
 
 ######################################## Brute Force #################################
-        # seen = set()
+        seen = set()
 
-        # while p1:
-        #     #add the node to seen 
-        #     seen.add(p1) 
-        #     #once added move it
-        #     p1 = p1.next
-        
-        # while p2:
-        #     #if this node is in seen then i have reached the intersection point
-        #     if p2 in seen:
-        #         return p2
-        #     else:
-        #         #move the pointer 2
-        #         p2 = p2.next
-        # return None
+        while p1:
+            #add the node to seen 
+            seen.add(p1) 
+            #once added move it
+            p1 = p1.next
+
+        while p2:
+            #if this node is in seen then i have reached the intersection point
+            if p2 in seen:
+                return p2
+            else:
+                #move the pointer 2
+                p2 = p2.next
+        return None
 #time = O(m + n)
 #space = O(m) m is list 1 n is list 2
 
