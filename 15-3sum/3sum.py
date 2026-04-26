@@ -5,7 +5,7 @@ class Solution:
 
         #for each i i will need to find the two compleiment pairs j and k
         for i in range(len(nums)):
-            #skip dupliactes if cur i and prev are the same
+            #skip dupliactes if cur i and prev are the same, after processing the first
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
