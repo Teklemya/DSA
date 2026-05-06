@@ -10,9 +10,7 @@ class Solution:
                 return True
             else:
                 #then now i need to move the frist letter to the end
-                firstLetter = currS[0]
-                currS = currS[1:]
-                currS = currS + firstLetter
+                currS = currS[1:] + currS[0]
                 print(currS)
         return False
         '''
