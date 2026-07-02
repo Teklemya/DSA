@@ -4,20 +4,18 @@ class Solution:
         right = len(nums) - 1
 
         while left <= right:
+            #Get the middle
             mid = (left + right) // 2
-            print(mid)
+            #Check if the number in middle index is equal to target
             if nums[mid] == target:
                 return mid
+            #Check if the target is more than mid then move the right down
             if nums[mid] > target:
                 right = mid - 1
-                print(right)
+            #Move the left above mid becuase mid is already accounted for
             else:
                 left = mid + 1
         return -1
-
-
-
-
 
 
         '''
